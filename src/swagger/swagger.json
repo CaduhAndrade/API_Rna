@@ -1,0 +1,139 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentação da API Rna",
+    "version": "1.0.0",
+    "title": "Swagger Proteins",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "dev.andradecarlos@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:3000/api-docs",
+  "basePath": "",
+  "tags": [
+    {
+      "name": "Protein",
+      "description": "Todas as proteins"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/proteins": {
+      "get": {
+        "summary": "Listar proteinas",
+        "description": "Retornar todas as proteinas",
+        "operationId": "listAllProtein",
+        "produces": ["application/xml", "application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Protein"
+            }
+          },
+          "400": {
+            "description": "Invalid ID"
+          },
+          "404": {
+            "description": "Protein not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/proteins/{id}": {
+      "get": {
+        "summary": "Find protein by ID",
+        "description": "Returns a single protein",
+        "operationId": "findProteinById",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of protein to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Protein"
+            }
+          },
+          "400": {
+            "description": "Invalid ID"
+          },
+          "404": {
+            "description": "Protein not found"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Protein": {
+      "type": "object",
+      "properties": {
+        "protein_accession": {
+          "type": "string",
+          "example": "URS0000000001"
+        },
+        "description": {
+          "type": "string",
+          "example": "serine hydroxymethyltransferase"
+        },
+        "label": {
+          "type": "string",
+          "example": "glyA"
+        },
+        "synonyms": {
+          "type": "array",
+          "example": "A0123_00153",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "xml": {
+        "name": "Protein"
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

@@ -15,6 +15,7 @@
     "express-promise-router": "^4.0.1",
     "husky": "^4.2.5",
     "nodemon": "^2.0.4",
-    "pg": "^8.3.0"
+    "pg": "^8.3.0",
+    "swagger-ui-express": "^4.1.4"
   }
 }
