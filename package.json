@@ -1,0 +1,20 @@
+{
+  "name": "dev-junior",
+  "version": "1.0.0",
+  "description": "Simples API com Swagger.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Carlos Eduardo Lopes de Andrade",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-promise-router": "^4.0.1",
+    "husky": "^4.2.5",
+    "nodemon": "^2.0.4",
+    "pg": "^8.3.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "host": "hh-pgsql-public.ebi.ac.uk",
+  "port": 5432,
+  "database": "pfmegrnargs",
+  "user": "reader",
+  "password": "NWDMCE5xdipIjRrp"
+}
