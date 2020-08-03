@@ -9,7 +9,8 @@ exports.listAllProtein = async (req, res, next) => {
     if (!page || !limit) {
       return res.status(400).json({
         status: 'error',
-        message: 'Parametros limit e page são obrigatorios',
+        message: 'Parametros page e limit são obrigatorios',
+        example: '/proteins?page=X&limit=X',
       });
     }
     const response = await db.query(
@@ -17,16 +18,26 @@ exports.listAllProtein = async (req, res, next) => {
       [limit, page]
     );
     res.status(200).send(response.rows);
+    next();
   } catch (error) {
     res.status(500).json({ status: 'error', message: 'Error interno' }).send();
   }
 };
 
-exports.findProteinById = async (req, res) => {
-  const proteinId = req.params.id;
-  const response = await db.query(
-    'SELECT * FROM rnacen.protein_info WHERE protein_accession = $1',
-    [proteinId]
-  );
-  res.status(200).send(response.rows);
+exports.findProteinById = async (req, res, next) => {
+  try {
+    const proteinId = req.params.id;
+    const response = await db.query(
+      'SELECT * FROM rnacen.protein_info WHERE protein_accession = $1',
+      [proteinId]
+    );
+    if (response.rows == 0) {
+      res.status(404).send(response.rows);
+    } else {
+      res.status(200).send(response.rows);
+    }
+    next();
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: 'Error interno' }).send();
+  }
 };
